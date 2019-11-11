@@ -59,7 +59,7 @@
             add_action('rwmb_enqueue_scripts', function(){
                 $url = plugin_dir_url(LDC_Meta_Box) . 'includes/select2-bootstrap4-theme-1.3.2/dist/select2-bootstrap4.min.css';
                 wp_enqueue_style('select2-bootstrap4-theme', $url, array('rwmb-select2'), '1.3.2');
-                $data = 'jQuery(function($){ $.fn.select2.defaults.set(\'theme\', \'bootstrap4\'); });';
+                $data = 'if(typeof(jQuery.fn.select2) !== \'undefined\'){ jQuery.fn.select2.defaults.set(\'theme\', \'bootstrap4\'); }';
                 wp_add_inline_script('rwmb-select2', $data);
             });
             add_filter('rwmb_outer_html', function($outer_html) use($atts){

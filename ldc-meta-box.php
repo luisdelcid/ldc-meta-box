@@ -10,7 +10,7 @@
  * Plugin Name: LDC Meta Box
  * Plugin URI: https://luisdelcid.com
  * Text Domain: ldc-meta-box
- * Version: 2019.11.11
+ * Version: 2019.11.11.1
  *
  */ // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -31,7 +31,7 @@
 			deactivate_plugins(plugin_basename(__FILE__));
 		} else {
             define('LDC_Meta_Box', __FILE__);
-			define('LDC_Meta_Box_Version', '2019.11.11');
+			define('LDC_Meta_Box_Version', '2019.11.11.1');
             require_once(plugin_dir_path(LDC_Meta_Box) . 'functions.php');
         }
 	});
