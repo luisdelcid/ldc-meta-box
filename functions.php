@@ -6,42 +6,6 @@
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    if(!function_exists('ldc_meta_box_fix_conditional_logic')){
-        function ldc_meta_box_fix_conditional_logic(){
-            add_action('init', function(){
-                if(!defined('MB_FRONTEND_SUBMISSION_DIR') and defined('MB_USER_PROFILE_DIR')){
-    				define('MB_FRONTEND_SUBMISSION_DIR', MB_USER_PROFILE_DIR);
-    			}
-            }, 21);
-        }
-    }
-
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    if(!function_exists('ldc_meta_box_fix_validation')){
-        function ldc_meta_box_fix_validation(){
-            add_action('rwmb_enqueue_scripts', function(RW_Meta_Box $object){
-                if(!empty($object->meta_box['validation'])){
-                    $url = plugin_dir_url(LDC_Meta_Box) . 'validate.js';
-                    wp_dequeue_script('rwmb-validate');
-    				wp_deregister_script('rwmb-validate');
-    				wp_enqueue_script('rwmb-validate', $url, array('jquery-validation', 'jquery-validation-additional-methods'), 'ldc-meta-box-' . LDC_Meta_Box_Version, true);
-    				if(is_callable(array('RWMB_Helpers_Field', 'localize_script_once'))){
-    					RWMB_Helpers_Field::localize_script_once('rwmb-validate', 'rwmbValidate', array(
-    						'summaryMessage' => esc_html__('Please correct the errors highlighted below and try again.', 'meta-box'),
-    					));
-    				} elseif(is_callable(array('RWMB_Helpers_Field', 'localize_script_once'))){
-    					RWMB_Field::localize_script('rwmb-validate', 'rwmbValidate', array(
-    						'summaryMessage' => esc_html__('Please correct the errors highlighted below and try again.', 'meta-box'),
-    					));
-    				}
-    			}
-            });
-        }
-    }
-
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
     if(!function_exists('ldc_meta_box_bootstrap_fields')){
         function ldc_meta_box_bootstrap_fields($atts = array()){
             if(is_admin()){
@@ -88,7 +52,7 @@
     								$input_group_append->outertext = '<div class="input-group-append">' . $input_group_append->outertext . '</div>';
     							}
     						}
-    						foreach($form_group->find('input[type=email], input[type=number], input[type=password], input[type=text], input[type=url], textarea') as $input){
+    						foreach($form_group->find('input[type=email], input[type=number], input[type=password], input[type=text], input[type=url], textarea, select') as $input){
     							$input->addClass('form-control');
     						}
     						foreach($form_group->find('input[type=file]') as $input){
@@ -217,3 +181,41 @@
             });
         }
     }
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    if(!function_exists('ldc_meta_box_fix_conditional_logic')){
+        function ldc_meta_box_fix_conditional_logic(){
+            add_action('init', function(){
+                if(!defined('MB_FRONTEND_SUBMISSION_DIR') and defined('MB_USER_PROFILE_DIR')){
+    				define('MB_FRONTEND_SUBMISSION_DIR', MB_USER_PROFILE_DIR);
+    			}
+            }, 21);
+        }
+    }
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    if(!function_exists('ldc_meta_box_fix_validation')){
+        function ldc_meta_box_fix_validation(){
+            add_action('rwmb_enqueue_scripts', function(RW_Meta_Box $object){
+                if(!empty($object->meta_box['validation'])){
+                    $url = plugin_dir_url(LDC_Meta_Box) . 'validate.js';
+                    wp_dequeue_script('rwmb-validate');
+    				wp_deregister_script('rwmb-validate');
+    				wp_enqueue_script('rwmb-validate', $url, array('jquery-validation', 'jquery-validation-additional-methods'), 'ldc-meta-box-' . LDC_Meta_Box_Version, true);
+    				if(is_callable(array('RWMB_Helpers_Field', 'localize_script_once'))){
+    					RWMB_Helpers_Field::localize_script_once('rwmb-validate', 'rwmbValidate', array(
+    						'summaryMessage' => esc_html__('Please correct the errors highlighted below and try again.', 'meta-box'),
+    					));
+    				} elseif(is_callable(array('RWMB_Helpers_Field', 'localize_script_once'))){
+    					RWMB_Field::localize_script('rwmb-validate', 'rwmbValidate', array(
+    						'summaryMessage' => esc_html__('Please correct the errors highlighted below and try again.', 'meta-box'),
+    					));
+    				}
+    			}
+            });
+        }
+    }
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
