@@ -52,8 +52,11 @@
     								$input_group_append->outertext = '<div class="input-group-append">' . $input_group_append->outertext . '</div>';
     							}
     						}
-    						foreach($form_group->find('input[type=email], input[type=number], input[type=password], input[type=text], input[type=url], textarea, select') as $input){
+    						foreach($form_group->find('input[type=email], input[type=number], input[type=password], input[type=text], input[type=url], textarea') as $input){
     							$input->addClass('form-control');
+    						}
+                            foreach($form_group->find('select') as $input){
+    							$input->addClass('custom-select');
     						}
     						foreach($form_group->find('input[type=file]') as $input){
     							$input->addClass('custom-file-input');
