@@ -33,8 +33,10 @@
     				$outer_html = str_replace('class="rwmb-column rwmb-column-', 'class="col-' . $atts['column_width'] . '-', $outer_html);
     				$html = str_get_html($outer_html);
     				foreach($html->find('div.rwmb-field') as $form_group){
-    					if(!$form_group->hasClass('rwmb-hidden-wrapper') and !$form_group->hasClass('rwmb-group-wrapper')){
-                            $form_group->addClass('form-group');
+    					if(!$form_group->hasClass('rwmb-hidden-wrapper')){
+                            if(!$form_group->hasClass('rwmb-group-wrapper')){
+                                $form_group->addClass('form-group');
+                            }
     						foreach($form_group->find('.rwmb-input, .rwmb-label') as $element){
     							$element->addClass('w-100');
     						}
