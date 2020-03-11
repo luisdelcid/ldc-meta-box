@@ -3,8 +3,8 @@ Contributors: @luisdelcid
 Donate link: https://luisdelcid.com
 Tags: ldc, meta, box
 Requires at least: 5.0
-Tested up to: 5.2.4
-Stable tag: 2019.11.13.3
+Tested up to: 5.3.2
+Stable tag: 0.3.10
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,7 +13,7 @@ LDC Meta Box
 
 == Description ==
 
-A collection of useful functions for your WordPress theme's functions.php.
+Just another LDC plugin.
 
 == Changelog ==
 
